@@ -2,6 +2,8 @@
 
 Projeto simples usado na atividade prática de **Git, GitHub e GitFlow**.
 
+Versão atual: **v1.0.0**
+
 O foco é o fluxo de versionamento (`main`, `develop`, `feature`, `hotfix` e `release`), não a complexidade do código.
 
 ## Como visualizar
