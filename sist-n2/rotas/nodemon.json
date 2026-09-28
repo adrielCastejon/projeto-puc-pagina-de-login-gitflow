@@ -1,0 +1,11 @@
+{
+  "watch": ["."],
+  "ext": "js,json",
+  "env": {
+    "MYSQL_USER": "root",
+    "MYSQL_PASSWORD": "root",
+    "MYSQL_HOST": "localhost",
+    "MYSQL_DATABASE": "agenda",
+    "MYSQL_PORT": "3307"
+  }
+}
