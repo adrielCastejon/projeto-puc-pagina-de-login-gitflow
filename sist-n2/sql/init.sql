@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS servico (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(255),
+  duracao INT,
+  preco DECIMAL(10,2)
+);
