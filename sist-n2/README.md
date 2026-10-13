@@ -1,7 +1,7 @@
 # Salão de Beleza — API REST
 
-API do recurso `servico` (id, nome, duracao, preco), no molde do projeto de aula.
-
+API do recurso `servico`
+ (id, nome, duracao, preco).
 ## Subir
 
 Na pasta `sist-n2`:
