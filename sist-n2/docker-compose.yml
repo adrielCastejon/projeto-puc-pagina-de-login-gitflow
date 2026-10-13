@@ -1,15 +1,15 @@
 services:
   mysql:
     image: mysql:8.4
-    container_name: sist-n2-mysql
+    container_name: salao-mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: agenda
+      MYSQL_DATABASE: salao
     ports:
       - "3307:3306"
     volumes:
-      - mysql_data:/var/lib/mysql
+      - salao_mysql_data:/var/lib/mysql
       - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
 
 volumes:
-  mysql_data:
+  salao_mysql_data:

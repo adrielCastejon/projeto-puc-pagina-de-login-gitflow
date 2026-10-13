@@ -1,10 +1,8 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const url = require('url');
-const queryString = require('querystring');
-const mysql = require('./mysql').pool;
+const mysql = require("./mysql").pool;
 
-router.get('/', (req, res, next) => {
+router.get("/", (req, res, next) => {
   mysql.getConnection((error, conn) => {
     if (error) {
       return res.status(500).send({
@@ -13,7 +11,7 @@ router.get('/', (req, res, next) => {
       });
     }
     conn.query(
-      'SELECT * FROM contato',
+      "SELECT * FROM servico",
       (error, resultado, fields) => {
         conn.release();
         if (error) {
@@ -28,9 +26,9 @@ router.get('/', (req, res, next) => {
   });
 });
 
-router.post('/create', (req, res, next) => {
-  const { nome, fone, email } = req.body;
-  const contato = { nome, fone, email };
+router.post("/create", (req, res, next) => {
+  const { nome, duracao, preco } = req.body;
+  const servico = { nome, duracao, preco };
 
   mysql.getConnection((error, conn) => {
     if (error) {
@@ -40,8 +38,8 @@ router.post('/create', (req, res, next) => {
       });
     }
     conn.query(
-      'INSERT INTO contato (nome, fone, email) VALUES (?, ?, ?)',
-      [contato.nome, contato.fone, contato.email],
+      "INSERT INTO servico (nome, duracao, preco) VALUES (?, ?, ?)",
+      [servico.nome, servico.duracao, servico.preco],
       (error, resultado, fields) => {
         conn.release();
         if (error) {
@@ -51,15 +49,15 @@ router.post('/create', (req, res, next) => {
           });
         }
         return res.status(201).send({
-          mensagem: 'Contato cadastrado com sucesso',
-          'ID do contato cadastrado': resultado.insertedId
+          mensagem: "Serviço cadastrado com sucesso",
+          "ID do serviço cadastrado": resultado.insertId
         });
       }
     );
   });
 });
 
-router.get('/:id', (req, res, next) => {
+router.get("/:id", (req, res, next) => {
   const id = req.params.id;
 
   mysql.getConnection((error, conn) => {
@@ -70,7 +68,7 @@ router.get('/:id', (req, res, next) => {
       });
     }
     conn.query(
-      'SELECT * FROM contato WHERE id = ?',
+      "SELECT * FROM servico WHERE id = ?",
       [id],
       (error, resultado, fields) => {
         conn.release();
@@ -86,9 +84,9 @@ router.get('/:id', (req, res, next) => {
   });
 });
 
-router.put('/:id', (req, res, next) => {
-  const { nome, fone, email } = req.body;
-  const contato = { nome, fone, email };
+router.put("/:id", (req, res, next) => {
+  const { nome, duracao, preco } = req.body;
+  const servico = { nome, duracao, preco };
 
   mysql.getConnection((error, conn) => {
     if (error) {
@@ -98,8 +96,8 @@ router.put('/:id', (req, res, next) => {
       });
     }
     conn.query(
-      'UPDATE contato SET nome = ?, fone = ?, email = ? WHERE id = ?',
-      [contato.nome, contato.fone, contato.email, req.params.id],
+      "UPDATE servico SET nome = ?, duracao = ?, preco = ? WHERE id = ?",
+      [servico.nome, servico.duracao, servico.preco, req.params.id],
       (error, resultado, fields) => {
         conn.release();
         if (error) {
@@ -109,7 +107,7 @@ router.put('/:id', (req, res, next) => {
           });
         }
         return res.status(202).send({
-          mensagem: 'Contato atualizado com sucesso',
+          mensagem: "Serviço atualizado com sucesso",
           response: resultado
         });
       }
@@ -117,7 +115,7 @@ router.put('/:id', (req, res, next) => {
   });
 });
 
-router.delete('/:id', (req, res, next) => {
+router.delete("/:id", (req, res, next) => {
   mysql.getConnection((error, conn) => {
     if (error) {
       return res.status(500).send({
@@ -126,7 +124,7 @@ router.delete('/:id', (req, res, next) => {
       });
     }
     conn.query(
-      'DELETE FROM contato WHERE id = ?',
+      "DELETE FROM servico WHERE id = ?",
       [req.params.id],
       (error, resultado, fields) => {
         conn.release();
@@ -137,7 +135,7 @@ router.delete('/:id', (req, res, next) => {
           });
         }
         return res.status(202).send({
-          mensagem: 'Contato removido com sucesso',
+          mensagem: "Serviço removido com sucesso",
           response: resultado
         });
       }
