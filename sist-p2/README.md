@@ -4,7 +4,7 @@ API do recurso `servico`
  (id, nome, duracao, preco).
 ## Subir
 
-Na pasta `sist-n2`:
+Na pasta `sist-p2`:
 
 ```bash
 docker compose up -d
